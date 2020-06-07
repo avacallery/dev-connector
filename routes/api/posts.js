@@ -10,6 +10,7 @@ const User = require('../../models/User');
 // @route    Post api/posts
 // @desc     Create a post
 // @access   Private
+
 router.post(
   '/',
   [auth, [check('text', 'Text is required').not().isEmpty()]],
