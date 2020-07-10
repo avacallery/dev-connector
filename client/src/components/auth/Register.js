@@ -2,11 +2,12 @@ import React, { Fragment, useState } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 import PropTypes from 'prop-types';
 
 //you have to pass your action(s) through connect
 
-export const Register = ({ setAlert }) => {
+export const Register = ({ setAlert, register }) => {
   //our state is going to be an object with all of the field values
   //we use the useState hook to get the state
   const [formData, setFormData] = useState({
@@ -27,7 +28,7 @@ export const Register = ({ setAlert }) => {
       //props take in msg and alertType ()
       setAlert('Passwords do not match.', 'danger');
     } else {
-      console.log('Success.');
+      register({ name, email, password });
     }
   };
 
@@ -94,7 +95,8 @@ export const Register = ({ setAlert }) => {
 
 Register.propTypes = {
   setAlert: PropTypes.func.isRequired,
+  register: PropTypes.func.isRequired,
 };
 
 //connect takes in 2 things: state, {actions}
-export default connect(null, { setAlert })(Register);
+export default connect(null, { setAlert, register })(Register);
