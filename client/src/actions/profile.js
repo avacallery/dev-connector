@@ -50,11 +50,45 @@ export const createProfile = (formData, history, edit = false) => async (
     }
   } catch (err) {
     // // errors will display if fields are left empty
-    // const errors = err.response.data.errors;
+    const errors = err.response.data.errors;
 
-    // if (errors) {
-    //   errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
-    // }
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
+
+    dispatch({
+      type: PROFILE_ERROR,
+      payload: { msg: err.response.statusTest, status: err.response.status },
+    });
+  }
+};
+
+// Add Experience
+
+export const addExperience = (formData, history) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+
+    const res = await axios.put('/api/profile/experience', formData, config);
+
+    dispatch({
+      type: UPDATE_PROFILE,
+      // send profile as payload
+      payload: res.data,
+    });
+
+    dispatch(setAlert('Expierience Added'));
+    history.push('/dashboard');
+  } catch (err) {
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setAlert(error.msg, 'danger')));
+    }
 
     dispatch({
       type: PROFILE_ERROR,
