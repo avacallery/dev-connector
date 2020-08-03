@@ -46,7 +46,7 @@ const EditProfile = ({
       instagram: loading || !profile.social ? '' : profile.social.instagram,
     });
     // when it loads, useEffect will run
-  }, [loading]);
+  }, [loading, getCurrentProfile]);
 
   const {
     company,
