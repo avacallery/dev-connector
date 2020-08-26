@@ -13,8 +13,6 @@ import AddEducation from './components/profile-forms/AddEducation';
 import Profiles from './components/profiles/Profiles';
 import Profile from './components/profile/Profile';
 import PrivateRoute from './components/routing/PrivateRoute';
-import { loadUser } from './actions/auth';
-import setAuthToken from './utils/setAuthToken';
 
 import './App.css';
 
@@ -22,6 +20,8 @@ import './App.css';
 import { Provider } from 'react-redux';
 //we wrap everything in provider so we can give our app state
 import store from './store';
+import { loadUser } from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
