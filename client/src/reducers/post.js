@@ -71,8 +71,8 @@ export default function (state = initialState, action) {
         ...state,
         post: {
           ...state.post,
+          //bring in all the comments except the one with id that matches
           comments: state.post.comments.filter(
-            //bring in all the comments except the one with id that matches
             (comment) => comment._id !== payload
           ),
         },
