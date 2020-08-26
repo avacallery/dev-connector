@@ -171,7 +171,7 @@ export const deleteComment = (postId, commentId) => async (dispatch) => {
   } catch (err) {
     dispatch({
       type: POST_ERROR,
-      payload: { msg: err.response.statusText, status: err.repsonse.status },
+      payload: { msg: err.response.statusText },
     });
   }
 };

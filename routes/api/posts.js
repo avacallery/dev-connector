@@ -255,8 +255,9 @@ router.delete('/comment/:id/:comment_id', auth, async (req, res) => {
       .map((comment) => comment.user.toString())
       .indexOf(req.user.id);
 
-    //splice like out of the array
-    post.comments.splice(removeIndex, 1);
+    post.comments = post.comments.filter(
+      ({ id }) => id !== req.params.comment_id
+    );
 
     await post.save();
 
